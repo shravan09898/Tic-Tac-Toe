@@ -1,6 +1,11 @@
 package org.example.models;
 
-import java.util.ArrayList;
+import org.example.exceptions.InvalidBotCountException;
+import org.example.exceptions.InvalidDimensionException;
+import org.example.exceptions.InvalidateDuplicatePlayerExcepion;
+import org.example.exceptions.InvalidateNoOfPlayersException;
+
+import java.util.*;
 
 public class Game {
     private List<Player> players;
@@ -11,7 +16,7 @@ public class Game {
     private int nextPlayerIndex;
     private List<WinningStrategy> winningStrategies;
 
-    private Game(List<Player> players, Board board, Player winner, int nextPlayerIndex, List<WinningStrategy> winningStrategies) {
+    private Game(List<Player> players, Board board, List<WinningStrategy> winningStrategies) {
         this.players = players;
         this.board = board;
         this.moves = new ArrayList<Move>();
@@ -22,9 +27,13 @@ public class Game {
     }
 
     public static class Builder{
+
+        public static Builder builder(){
+            return new Builder();
+        }
         private List<Player> players;
         private List<WinningStrategy> winningStrategies;
-        private int dimensions;
+        private int dimension;
 
         private Builder() {
             this.players = new ArrayList<Player>();
@@ -40,12 +49,64 @@ public class Game {
             this.winningStrategies = winningStrategies;
         }
 
-        public void setDimensions(int dimensions) {
-            this.dimensions = dimensions;
+        public void setDimensions(int dimension) {
+            this.dimension = dimension;
         }
 
         public void addPlayer(Player player){
             players.add(player);
+        }
+
+        public void addWinningStrategy(WinningStrategy winningStrategy){
+            winningStrategies.add(winningStrategy);
+        }
+
+        private void validateBotsCount(){
+            int botCount = 0;
+            for(Player player : players){
+                if(player.getPlayerType().equals(PlayerType.BOT))
+                    botCount++;
+
+                if(botCount>1){
+                    //throw an exception
+                    throw new InvalidBotCountException("Bot count cant be more than 1");
+                }
+            }
+        }
+
+        private void validateDmimensions(){
+            if(dimension<3 || dimension>10){
+                throw new InvalidDimensionException("board should be above 3 or less than 11")
+            }
+        }
+
+        private void validateNumOfPlayers(){
+            if(players.size()!=dimension-1){
+                throw new InvalidateNoOfPlayersException("Player count should be 1 less than board size");
+            }
+        }
+
+        private void validateUniqueSymbols(){
+            HashSet<Character> set = new HashSet<>();
+            for(Player player : players){
+                if(set.contains(player.getSymbol().getPlayerSymbol()))
+                    throw new InvalidateDuplicatePlayerExcepion("Player symbol can't be duplicate");
+                else{
+                    set.add(player.getSymbol().getPlayerSymbol());
+                }
+            }
+        }
+
+        private void validate(){
+            validateBotsCount();
+            validateDmimensions();
+            validateNumOfPlayers();
+            validateUniqueSymbols();
+        }
+
+        private Game build(){
+            validate();
+            return new Game(players, new Board(dimension), winningStrategies);
         }
     }
 }

@@ -1,5 +1,5 @@
 package org.example.models;
 
 public enum GameState {
-    IN_PROGRESS, DRAW, WIN
+    IN_PROGRESS, DRAW, WIN;
 }
