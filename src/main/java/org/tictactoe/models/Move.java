@@ -1,4 +1,4 @@
-package org.example.models;
+package org.tictactoe.models;
 
 public class Move {
     private Cell cell;

@@ -1,6 +1,6 @@
-package org.example.models;
+package org.tictactoe.models;
 
-import org.example.strategies.BotPlayingStrategy;
+import org.tictactoe.strategies.BotPlayingStrategy;
 
 public class Bot extends Player{
     private BotDifficultyLevel botDifficultyLevel;

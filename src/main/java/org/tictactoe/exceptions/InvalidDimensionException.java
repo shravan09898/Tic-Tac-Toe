@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package org.tictactoe.exceptions;
 
 public class InvalidDimensionException extends RuntimeException{
     public InvalidDimensionException() {

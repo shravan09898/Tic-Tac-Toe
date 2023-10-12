@@ -1,10 +1,10 @@
-package org.example.models;
+package org.tictactoe.models;
 
-import org.example.exceptions.InvalidBotCountException;
-import org.example.exceptions.InvalidDimensionException;
-import org.example.exceptions.InvalidateDuplicatePlayerExcepion;
-import org.example.exceptions.InvalidateNoOfPlayersException;
-import org.example.strategies.WinningStrategy;
+import org.tictactoe.exceptions.InvalidBotCountException;
+import org.tictactoe.exceptions.InvalidDimensionException;
+import org.tictactoe.exceptions.InvalidateDuplicatePlayerExcepion;
+import org.tictactoe.exceptions.InvalidateNoOfPlayersException;
+import org.tictactoe.strategies.WinningStrategy;
 
 import java.util.*;
 

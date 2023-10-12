@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package org.tictactoe.exceptions;
 
 public class InvalidateDuplicatePlayerExcepion extends RuntimeException{
     public InvalidateDuplicatePlayerExcepion() {

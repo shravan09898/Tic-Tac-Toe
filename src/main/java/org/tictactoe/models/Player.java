@@ -1,4 +1,4 @@
-package org.example.models;
+package org.tictactoe.models;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package org.example.strategies;
+package org.tictactoe.strategies;
 
 public interface WinningStrategy {
 
