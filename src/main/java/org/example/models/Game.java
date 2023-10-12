@@ -4,6 +4,7 @@ import org.example.exceptions.InvalidBotCountException;
 import org.example.exceptions.InvalidDimensionException;
 import org.example.exceptions.InvalidateDuplicatePlayerExcepion;
 import org.example.exceptions.InvalidateNoOfPlayersException;
+import org.example.strategies.WinningStrategy;
 
 import java.util.*;
 
@@ -76,7 +77,7 @@ public class Game {
 
         private void validateDmimensions(){
             if(dimension<3 || dimension>10){
-                throw new InvalidDimensionException("board should be above 3 or less than 11")
+                throw new InvalidDimensionException("board should be above 3 or less than 11");
             }
         }
 
